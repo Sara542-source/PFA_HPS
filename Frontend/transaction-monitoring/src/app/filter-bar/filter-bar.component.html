@@ -1,0 +1,12 @@
+<div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex flex-col md:flex-row gap-4 items-center">
+  <div class="flex flex-col">
+    <label for="startDateTime" class="text-primary dark:text-primary font-bold mb-1">Date et heure de début</label>
+    <input id="startDateTime" type="datetime-local" [(ngModel)]="startDateTime" (ngModelChange)="applyFilter()"
+           class="border border-gray-300 dark:border-gray-700 rounded p-2 focus:outline-none focus:ring-2 focus:ring-primary text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
+  </div>
+  <div class="flex flex-col">
+    <label for="endDateTime" class="text-primary dark:text-primary font-bold mb-1">Date et heure de fin</label>
+    <input id="endDateTime" type="datetime-local" [(ngModel)]="endDateTime" (ngModelChange)="applyFilter()"
+           class="border border-gray-300 dark:border-gray-700 rounded p-2 focus:outline-none focus:ring-2 focus:ring-primary text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
+  </div>
+</div>

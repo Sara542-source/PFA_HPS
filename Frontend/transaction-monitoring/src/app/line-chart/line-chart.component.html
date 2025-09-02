@@ -1,0 +1,12 @@
+<div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+  <h2 class="text-primary dark:text-primary font-semibold text-lg mb-4">Transaction Metrics</h2>
+  <div class="chart-container">
+    <canvas baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            type="line"
+            *ngIf="transactions.length > 0">
+    </canvas>
+  </div>
+  <p *ngIf="transactions.length === 0" class="text-gray-500 dark:text-gray-400 text-center mt-4">No data available. Please select a date range.</p>
+</div>

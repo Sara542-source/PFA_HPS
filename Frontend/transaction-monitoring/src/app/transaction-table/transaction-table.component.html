@@ -1,0 +1,46 @@
+<div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+  <h2 class="text-primary dark:text-primary font-semibold text-lg mb-4">Transactions</h2>
+  <table class="w-full border-collapse border border-gray-200 dark:border-gray-700">
+    <thead>
+      <tr class="bg-gray-50 dark:bg-gray-700">
+        <th class="border border-gray-200 dark:border-gray-700 p-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Transaction ID</th>
+        <th class="border border-gray-200 dark:border-gray-700 p-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Timestamp</th>
+        <th class="border border-gray-200 dark:border-gray-700 p-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">creqReceptionMs</th>
+        <th class="border border-gray-200 dark:border-gray-700 p-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">challengeDisplayMs</th>
+        <th class="border border-gray-200 dark:border-gray-700 p-2 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">rreqSendingMs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of paginatedTransactions" class="hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+        <td class="border border-gray-200 dark:border-gray-700 p-2 text-sm text-gray-900 dark:text-gray-100">{{ transaction.transactionId }}</td>
+        <td class="border border-gray-200 dark:border-gray-700 p-2 text-sm text-gray-900 dark:text-gray-100">{{ transaction.timestamp | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td class="border border-gray-200 dark:border-gray-700 p-2 text-sm" [ngClass]="{'text-red-500 dark:text-red-400': transaction.creqReceptionMs > 100}">
+          {{ transaction.creqReceptionMs }}
+        </td>
+        <td class="border border-gray-200 dark:border-gray-700 p-2 text-sm" [ngClass]="{'text-red-500 dark:text-red-400': transaction.challengeDisplayMs > 100}">
+          {{ transaction.challengeDisplayMs }}
+        </td>
+        <td class="border border-gray-200 dark:border-gray-700 p-2 text-sm" [ngClass]="{'text-red-500 dark:text-red-400': transaction.rreqSendingMs > 100}">
+          {{ transaction.rreqSendingMs }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="transactions.length === 0" class="text-gray-500 dark:text-gray-400 text-center mt-4 text-sm">Aucune transaction à afficher.</p>
+  <div *ngIf="transactions.length > 0" class="flex justify-center gap-2 mt-4">
+    <button (click)="previousPage()" [disabled]="currentPage === 1"
+            class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed">
+      Précédent
+    </button>
+    <button *ngFor="let page of [].constructor(totalPages); let i = index"
+            (click)="goToPage(i + 1)"
+            [ngClass]="{'bg-primary text-white': currentTheme === 'light' && currentPage === i + 1, 'bg-gray-200 hover:bg-gray-300': currentTheme === 'light' && currentPage !== i + 1, 'bg-primary dark:bg-primary-dark dark:text-white': currentTheme === 'dark' && currentPage === i + 1, 'bg-gray-700 dark:hover:bg-gray-600': currentTheme === 'dark' && currentPage !== i + 1}"
+            class="px-4 py-2 rounded-md transition text-sm">
+      {{ i + 1 }}
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages"
+            class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed">
+      Suivant
+    </button>
+  </div>
+</div>

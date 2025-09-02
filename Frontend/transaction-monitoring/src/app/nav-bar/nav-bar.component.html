@@ -1,0 +1,17 @@
+
+
+<nav class="bg-primary text-white p-4 rounded-lg shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-xl font-semibold">Transaction Monitoring</h1>
+    <div class="flex space-x-4">
+    <a routerLink="/" class="hover:underline">Home</a>
+    <a routerLink="/search" class="hover:underline">Search</a>
+  </div>
+    <button (click)="toggleTheme()" class="px-3 py-2 bg-white dark:bg-gray-700 text-primary dark:text-white rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition text-sm">
+      {{ currentTheme === 'light' ? 'Mode Sombre' : 'Mode Clair' }}
+    </button>
+<!--<div class="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold">A</div>--> 
+
+  </div>
+  
+</nav>
